@@ -15,8 +15,10 @@ clean:
 	rm -f $(TARGET) $(OBJS) *.gcda *.gcno
 check: all
 	./$(TARGET)
+gcov: check
+	gcov $(SRCS)
 
 $(TARGET): $(OBJS)
 	$(CC) -o $@ $(LDFLAGS) $(OBJS) $(LDFLAGS)
 
-.PHONY: all clean check
+.PHONY: all clean check gcov

@@ -10,6 +10,7 @@ jobs:
         run: make COVERAGE_TEST=1
       - name: Run tests
         run: make check
+      - name: gcov  
         run: make -C src gcov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
