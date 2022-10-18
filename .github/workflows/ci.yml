@@ -5,11 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Compile calculator
-        run: gcc -fprofile-arcs -ftest-coverage -O0 -o test_calculator test_calculator.c calculator.c
+        run: make
       - name: Run tests
-        run: ./test_calculator
+        run: make check
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
