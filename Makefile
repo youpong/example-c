@@ -7,8 +7,12 @@ LDFLAGS = -lgcov
 
 all: $(TARGET)
 
+clean:
+	rm -f $(TARGET) $(OBJS) *.gcda *.gcno
 check: all
 	./$(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CC) -o $@ $(LDFLAGS) $(OBJS) $(LDFLAGS)
+
+.PHONY: all clean check
