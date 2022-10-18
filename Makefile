@@ -1,18 +1,8 @@
-TARGET = test_calculator
-SRCS = test_calculator.c calculator.c
-OBJS = $(SRCS:.c=.o)
+TOPTARGETS := all check clean
+SUBDIRS := src
 
-CFLAGS = -fprofile-arcs -ftest-coverage -O0
-LDFLAGS = -lgcov
+$(TOPTARGETS): $(SUBDIRS)
+$(SUBDIRS):
+	$(MAKE) -C $@ -j $(MAKECMDGOALS)
 
-all: $(TARGET)
-
-clean:
-	rm -f $(TARGET) $(OBJS) *.gcda *.gcno
-check: all
-	./$(TARGET)
-
-$(TARGET): $(OBJS)
-	$(CC) -o $@ $(LDFLAGS) $(OBJS) $(LDFLAGS)
-
-.PHONY: all clean check
+.PHONY: $(TOPTARGETS) $(SUBDIRS)
