@@ -6,7 +6,7 @@ CFLAGS = -std=c18 -Wall -Wextra -pedantic-errors
 
 ifeq ($(COVERAGE_TEST), 1)
 	CFLAGS += -fprofile-arcs -ftest-coverage -O0
-	LDFLAGS = -lgcov
+	LIBS += -lgcov
 endif
 
 all: $(TARGET)
@@ -19,6 +19,6 @@ gcov: check
 	gcov $(SRCS)
 
 $(TARGET): $(OBJS)
-	$(CC) -o $@ $(LDFLAGS) $(OBJS) $(LDFLAGS)
+	$(CC) -o $@ $(LDFLAGS) $(OBJS) $(LIBS)
 
 .PHONY: all clean check gcov
