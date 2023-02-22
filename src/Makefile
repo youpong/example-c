@@ -1,8 +1,8 @@
-TARGET = test_calculator
-SRCS = test_calculator.c calculator.c
-OBJS = $(SRCS:.c=.o)
+TARGET := test_calculator
+SRCS := $(wildcard *.c)
+OBJS := $(SRCS:.c=.o)
 
-CFLAGS = -std=c18 -Wall -Wextra -pedantic-errors
+CFLAGS := -std=c18 -Wall -Wextra -pedantic-errors
 
 ifeq ($(COVERAGE_TEST), 1)
 	CFLAGS += -fprofile-arcs -ftest-coverage -O0
@@ -15,6 +15,7 @@ clean:
 	rm -f $(TARGET) $(OBJS) *.gcda *.gcno
 check: all
 	./$(TARGET)
+	@echo "Test Passed"
 gcov: check
 	gcov $(SRCS)
 
