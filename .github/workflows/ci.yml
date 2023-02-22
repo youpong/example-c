@@ -1,5 +1,5 @@
 name: Workflow for Codecov example-c
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 jobs:
   run-gcc:
     runs-on: ubuntu-latest
